@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gerador de Protocolo</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4">Gerar Protocolo Interno</h1>
+
+    <form id="protocoloForm" class="space-y-4">
+      <div>
+        <label class="block font-medium">Nome do Atendente</label>
+        <input type="text" id="atendente" class="w-full p-2 border rounded" required />
+      </div>
+
+      <div>
+        <label class="block font-medium">Motivo</label>
+        <input type="text" id="motivo" class="w-full p-2 border rounded" required />
+      </div>
+
+      <div>
+        <label class="block font-medium">Turno</label>
+        <select id="turno" class="w-full p-2 border rounded" required>
+          <option value="">Selecione</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-medium">CPF do Cliente</label>
+        <input type="text" id="cpf" class="w-full p-2 border rounded" required />
+      </div>
+
+      <div>
+        <label class="block font-medium">E-mail do Backoffice</label>
+        <input type="email" id="email" class="w-full p-2 border rounded" required />
+      </div>
+
+      <div>
+        <label class="block font-medium">Observações Extras</label>
+        <textarea id="obs" class="w-full p-2 border rounded" rows="3"></textarea>
+      </div>
+
+      <div class="flex gap-4">
+        <button type="button" onclick="gerarProtocolo()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          Gerar Protocolo
+        </button>
+        <button type="button" onclick="copiarProtocolo()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+          Copiar Protocolo
+        </button>
+      </div>
+    </form>
+
+    <hr class="my-6"/>
+
+    <pre id="resultado" class="whitespace-pre-wrap bg-gray-100 p-4 rounded text-sm"></pre>
+  </div>
+
+  <script>
+    let contador = 14857;
+
+    function gerarProtocolo() {
+      const protocolo = `PROTOCOLO #${contador++}
+DATA DE EMISSÃO: ${dataAtual()}
+----------------------------------
+NOME DO ATENDENTE: ${getValor('atendente')}
+MOTIVO: ${getValor('motivo')}
+DATA DA SOLICITAÇÃO: ${dataAtual()}
+TURNO: ${getValor('turno')}
+----------------------------------
+CPF DO CLIENTE: ${getValor('cpf')}
+E-MAIL DO BACKOFFICE: ${getValor('email')}
+----------------------------------
+OBSERVAÇÕES EXTRAS: ${getValor('obs') || 'Nenhuma'}
+      `;
+
+      document.getElementById('resultado').textContent = protocolo;
+    }
+
+    function copiarProtocolo() {
+      const texto = document.getElementById('resultado').textContent;
+      navigator.clipboard.writeText(texto).then(() => {
+        alert('Protocolo copiado com sucesso!');
+      });
+    }
+
+    function getValor(id) {
+      return document.getElementById(id).value.trim();
+    }
+
+    function dataAtual() {
+      const hoje = new Date();
+      return hoje.toLocaleDateString('pt-BR').slice(0, 8) + hoje.getFullYear().toString().slice(-2);
+    }
+  </script>
+</body>
+</html>
