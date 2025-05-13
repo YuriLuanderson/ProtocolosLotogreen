@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Criar Protocolo Interno</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4">Criar Protocolo Interno</h1>
+    
+    <form class="space-y-4">
+      <div>
+        <label class="block font-medium">Nome do Protocolo</label>
+        <input type="text" class="w-full border border-gray-300 p-2 rounded" placeholder="Ex: Verificação Manual de Usuário">
+      </div>
+
+      <div>
+        <label class="block font-medium">Descrição</label>
+        <textarea class="w-full border border-gray-300 p-2 rounded" rows="4" placeholder="Descreva o protocolo em detalhes..."></textarea>
+      </div>
+
+      <div>
+        <label class="block font-medium">Categoria</label>
+        <select class="w-full border border-gray-300 p-2 rounded">
+          <option>Financeiro</option>
+          <option>Suporte</option>
+          <option>Segurança</option>
+          <option>Compliance</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-medium">Etapas do Protocolo</label>
+        <textarea class="w-full border border-gray-300 p-2 rounded" rows="6" placeholder="1. Acessar painel do usuário...&#10;2. Validar documentos..."></textarea>
+      </div>
+
+      <div>
+        <label class="block font-medium">Status</label>
+        <select class="w-full border border-gray-300 p-2 rounded">
+          <option>Ativo</option>
+          <option>Inativo</option>
+        </select>
+      </div>
+
+      <div class="flex justify-end">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Salvar Protocolo</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
